@@ -10,10 +10,13 @@ import {Observable} from 'rxjs/Observable';
 export class FriendsPage {
   search: string;
   friends: Observable<any[]>;
-  constructor(private navController: NavController, af: AngularFire) {
+  constructor(private nav: NavController, af: AngularFire) {
       af.auth.subscribe((authState)=>{
         console.log(authState);
-        if (authState) navController.push('login');
+        if (authState) {
+          // navController.push('login');
+          // this.nav.setPages([ {page: List}, {page: Detail}, {page:Info} ]);
+        }
       })
       // console.log(af.auth.getAuth())
     

@@ -16,15 +16,16 @@ export class TabsPage {
   private tab2Root: any;
   private tab3Root: any;
 
-  constructor(private navController: NavController, af: AngularFire) {
+  constructor(private nav: NavController, af: AngularFire) {
     
     
-    af.auth.subscribe((authState)=>{
-      console.log(authState);
-      if (!authState) {
-        this.navController.push(AuthPage);
-      }
-    })
+    // af.auth.subscribe((authState)=>{
+    //   console.log(authState);
+    //   if (!authState) {
+    //     // this.nav.push(AuthPage);
+    //     // this.nav.setPages([ {page: AuthPage} ]);
+    //   }
+    // })
     this.tab1Root = HomePage;
     this.tab2Root = AboutPage;
     this.tab3Root = FriendsPage;
