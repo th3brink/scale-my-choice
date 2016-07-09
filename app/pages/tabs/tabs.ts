@@ -1,7 +1,11 @@
 import {Component} from '@angular/core'
+import {NavController} from 'ionic-angular';
 import {HomePage} from '../home/home';
 import {AboutPage} from '../about/about';
-import {ContactPage} from '../contact/contact';
+import {FriendsPage} from '../friends/friends';
+import { AuthPage } from '../auth/auth';
+import {AngularFire} from 'angularfire2';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
@@ -12,11 +16,17 @@ export class TabsPage {
   private tab2Root: any;
   private tab3Root: any;
 
-  constructor() {
-    // this tells the tabs component which Pages
-    // should be each tab's root Page
+  constructor(private navController: NavController, af: AngularFire) {
+    
+    
+    af.auth.subscribe((authState)=>{
+      console.log(authState);
+      if (!authState) {
+        this.navController.push(AuthPage);
+      }
+    })
     this.tab1Root = HomePage;
     this.tab2Root = AboutPage;
-    this.tab3Root = ContactPage;
+    this.tab3Root = FriendsPage;
   }
 }
